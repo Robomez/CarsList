@@ -1,5 +1,6 @@
 package com.example.carslist;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +45,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Car currentCar = cars.get(position);
         holder.carBrand.setText(currentCar.brand);
         holder.carModel.setText(currentCar.model);
-        holder.carPrice.setText(currentCar.price);
+        holder.carPrice.setText(String.format(Integer.toString(currentCar.price)));
     }
 
     @Override
     public int getItemCount() {
         return cars.size();
+    }
+
+    public void reload() {
+        cars = MainActivity.database.carDao().getAllCars();
+        notifyDataSetChanged();
     }
 }
