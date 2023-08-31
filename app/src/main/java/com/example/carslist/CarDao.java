@@ -21,5 +21,4 @@ public interface CarDao {
     // Запрос для отображения всех авто
     @Query("SELECT * FROM cars")
     List<Car> getAllCars();
-
 }

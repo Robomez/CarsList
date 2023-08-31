@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/car_row"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/editbox_dropdown_light_frame">
 
     <TextView
         android:id="@+id/car_brand"
@@ -20,6 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/car_brand"
         app:layout_constraintTop_toBottomOf="@+id/car_brand"
         tools:text="Model" />
@@ -28,10 +31,10 @@
         android:id="@+id/car_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/car_model"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/car_brand"
         tools:text="Price" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -40,4 +43,40 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="81dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Марка:"
+        app:layout_constraintBottom_toBottomOf="@+id/car_brand"
+        app:layout_constraintEnd_toStartOf="@+id/car_brand"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/car_brand" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Модель:"
+        app:layout_constraintBottom_toBottomOf="@+id/car_model"
+        app:layout_constraintEnd_toStartOf="@+id/car_model"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/car_model" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Цена, ₽"
+        app:layout_constraintBottom_toBottomOf="@+id/car_price"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/car_price" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="81dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,11 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static CarsDatabase database;
     Button btnSortPrice, btnAddCar;
@@ -28,10 +31,13 @@ public class MainActivity extends AppCompatActivity {
                 .allowMainThreadQueries()
                 .build();
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         btnSortPrice = findViewById(R.id.button_sort_price);
+        btnSortPrice.setOnClickListener(this);
         btnAddCar = findViewById(R.id.button_add_car);
+        btnAddCar.setOnClickListener(this);
         filterSpinner = findViewById(R.id.filter_spinner);
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter();
 
@@ -39,5 +45,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         adapter.reload();
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        if (view.equals(btnAddCar)) {
+            Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
+            startActivity(intent);
+        } else if (view.equals(btnSortPrice)) {
+
+        } else {
+            throw new IllegalStateException("Unexpected value: " + view);
+        }
     }
 }
