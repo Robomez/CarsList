@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static CarsDatabase database;
     Button btnSortPrice, btnAddCar;
     Spinner filterSpinner;
+    RecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter();
+        adapter = new RecyclerViewAdapter();
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.reload();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.reload();
+    }
 
     @Override
     public void onClick(View view) {
@@ -54,9 +60,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
             startActivity(intent);
         } else if (view.equals(btnSortPrice)) {
-
+            sortPrice();
         } else {
             throw new IllegalStateException("Unexpected value: " + view);
         }
+    }
+
+    private void sortPrice() {
     }
 }

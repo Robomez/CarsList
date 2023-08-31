@@ -13,9 +13,13 @@
         android:theme="@style/Theme.CarsList"
         tools:targetApi="31">
         <activity
+            android:name=".ModifyCarActivity"
+            android:exported="false"
+            android:theme="@style/DialogActivity" />
+        <activity
             android:name=".AddCarActivity"
-            android:theme="@style/DialogActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/DialogActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddCarActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddCarActivity extends AppCompatActivity {
     EditText editTextBrand, editTextModel, editTextColor, editTextPrice;
 
     @Override
@@ -17,24 +17,22 @@ public class AddCarActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_add_car);
 
         Button btnAdded = findViewById(R.id.button_added);
-        btnAdded.setOnClickListener(this);
-        editTextBrand = findViewById(R.id.editText_brand);
-        editTextModel  = findViewById(R.id.editText_model);
-        editTextColor = findViewById(R.id.editText_color);
-        editTextPrice = findViewById(R.id.editText_price);
-
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        MainActivity.database.carDao().create(
-                editTextBrand.getText().toString(),
-                editTextModel.getText().toString(),
-                editTextColor.getText().toString(),
-                Integer.parseInt(editTextPrice.getText().toString())
-        );
-        Intent intent = new Intent(AddCarActivity.this, MainActivity.class);
-        startActivity(intent);
+        btnAdded.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.database.carDao().create(
+                        editTextBrand.getText().toString(),
+                        editTextModel.getText().toString(),
+                        editTextColor.getText().toString(),
+                        Integer.parseInt(editTextPrice.getText().toString())
+                );
+                Intent intent = new Intent(AddCarActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        editTextBrand = findViewById(R.id.editText_modify_brand);
+        editTextModel  = findViewById(R.id.editText_modify_model);
+        editTextColor = findViewById(R.id.editText_modify_color);
+        editTextPrice = findViewById(R.id.editText_modify_price);
     }
 }

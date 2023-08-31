@@ -9,6 +9,10 @@ import java.util.List;
 @Dao
 public interface CarDao {
 
+    // Запрос для отображения всех авто
+    @Query("SELECT * FROM cars")
+    List<Car> getAllCars();
+
     // Запрос для добавления нового автомобиля в базу
     @Query("INSERT INTO cars (brand, model, color, price) VALUES (:brand, :model, :color, :price)")
     void create(
@@ -18,7 +22,7 @@ public interface CarDao {
             int price
     );
 
-    // Запрос для отображения всех авто
-    @Query("SELECT * FROM cars")
-    List<Car> getAllCars();
+    // Запрос для обновления информации об автомобиле
+    @Query("UPDATE cars SET brand = :brand, model = :model, color = :color, price = :price WHERE id = :id")
+    void modify(String brand, String model, String color, int price, int id);
 }

@@ -1,6 +1,7 @@
 package com.example.carslist;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             carBrand = view.findViewById(R.id.car_brand);
             carModel = view.findViewById(R.id.car_model);
             carPrice = view.findViewById(R.id.car_price);
+
+
+
+            carRowView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Car current = (Car) carRowView.getTag();
+                    Intent intent = new Intent(view.getContext(), ModifyCarActivity.class);
+                    intent.putExtra("id", current.id);
+                    intent.putExtra("brand", current.brand);
+                    intent.putExtra("model", current.model);
+                    intent.putExtra("color", current.color);
+                    intent.putExtra("price", current.price);
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
@@ -46,6 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.carBrand.setText(currentCar.brand);
         holder.carModel.setText(currentCar.model);
         holder.carPrice.setText(String.format(Integer.toString(currentCar.price)));
+        holder.carRowView.setTag(currentCar);
     }
 
     @Override

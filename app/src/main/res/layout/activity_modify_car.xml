@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".AddCarActivity">
+    android:layout_height="match_parent"
+    tools:context=".ModifyCarActivity">
+
 
     <TextView
         android:id="@+id/textView5"
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="serif-monospace"
-        android:text="Добавить в базу:"
+        android:text="Изменить данные:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,11 +23,11 @@
         android:id="@+id/editText_modify_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
+        android:hint="Марка"
         android:inputType="text"
         android:minHeight="48dp"
-        android:hint="Марка"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -73,11 +74,11 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_modify_color" />
 
     <Button
-        android:id="@+id/button_added"
+        android:id="@+id/button_modified"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="Добавить"
+        android:text="Сохранить"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,6 +130,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/editText_modify_model"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/editText_modify_model" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
