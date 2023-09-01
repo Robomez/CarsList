@@ -25,4 +25,8 @@ public interface CarDao {
     // Запрос для обновления информации об автомобиле
     @Query("UPDATE cars SET brand = :brand, model = :model, color = :color, price = :price WHERE id = :id")
     void modify(String brand, String model, String color, int price, int id);
+
+    // Запрос для удаления автомобиля
+    @Query("DELETE FROM cars WHERE id = :id")
+    void delete(int id);
 }

@@ -1,6 +1,6 @@
 package com.example.carslist;
 
-import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +12,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 // Адаптер для отображения информации в RecyclerView
@@ -29,13 +31,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             carModel = view.findViewById(R.id.car_model);
             carPrice = view.findViewById(R.id.car_price);
 
-
-
             carRowView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Car current = (Car) carRowView.getTag();
-                    Intent intent = new Intent(view.getContext(), ModifyCarActivity.class);
+                    Intent intent = new Intent(view.getContext(), CarModifyActivity.class);
                     intent.putExtra("id", current.id);
                     intent.putExtra("brand", current.brand);
                     intent.putExtra("model", current.model);
@@ -44,7 +44,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     view.getContext().startActivity(intent);
                 }
             });
+
+            carRowView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Car current = (Car) carRowView.getTag();
+                    Intent intent = new Intent(view.getContext(), CarDeleteActivity.class);
+                    intent.putExtra("id", current.id);
+                    view.getContext().startActivity(intent);
+                    return true;
+                }
+            });
         }
+
     }
 
     private List<Car> cars = new ArrayList<>();
@@ -69,6 +81,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return cars.size();
+    }
+
+    public void sortByPrice(String order) {
+        if (order == MainActivity.ORDER_ASC) {
+            Collections.sort(cars, (o1, o2) -> o1.price - o2.price);
+        } else {
+            Collections.sort(cars, (o1, o2) -> o2.price - o1.price);
+        }
+        notifyDataSetChanged();
     }
 
     public void reload() {

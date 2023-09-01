@@ -8,13 +8,14 @@
 
     <Button
         android:id="@+id/button_sort_price"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Сорт по цене"
+        android:text="Сорт по цене ⇑"
         app:layout_constraintEnd_toStartOf="@id/filter_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Сорт по цене" />
+        tools:text="Сорт по цене ⇓" />
 
     <Spinner
         android:id="@+id/filter_spinner"
@@ -29,17 +30,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="625dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:flow_horizontalBias="0"
         app:layout_constraintBottom_toTopOf="@+id/button_add_car"
-        app:layout_constraintTop_toBottomOf="@+id/button_sort_price"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_sort_price" />
 
     <Button
         android:id="@+id/button_add_car"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

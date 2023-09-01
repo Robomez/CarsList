@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddCarActivity extends AppCompatActivity {
+public class CarAddActivity extends AppCompatActivity {
     EditText editTextBrand, editTextModel, editTextColor, editTextPrice;
 
     @Override
@@ -26,7 +26,7 @@ public class AddCarActivity extends AppCompatActivity {
                         editTextColor.getText().toString(),
                         Integer.parseInt(editTextPrice.getText().toString())
                 );
-                Intent intent = new Intent(AddCarActivity.this, MainActivity.class);
+                Intent intent = new Intent(CarAddActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

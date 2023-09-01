@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,10 +18,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Spinner filterSpinner;
     RecyclerViewAdapter adapter;
 
+    static String ORDER_ASC = "1", ORDER_DESC = "2", ORDER_UNORDERED = "0";
+    private String order;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        order = ORDER_UNORDERED;
 
         database = Room.databaseBuilder(
                 getApplicationContext(),
@@ -57,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.equals(btnAddCar)) {
-            Intent intent = new Intent(MainActivity.this, AddCarActivity.class);
+            Intent intent = new Intent(MainActivity.this, CarAddActivity.class);
             startActivity(intent);
         } else if (view.equals(btnSortPrice)) {
             sortPrice();
@@ -67,5 +71,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void sortPrice() {
+        adapter.sortByPrice(order);
+        if (order == ORDER_ASC) {
+            order = ORDER_DESC;
+            btnSortPrice.setText("Сорт по цене ⇑");
+        } else {
+            order = ORDER_ASC;
+            btnSortPrice.setText("Сорт по цене ⇓");
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
+
