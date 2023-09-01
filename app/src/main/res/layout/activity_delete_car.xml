@@ -7,12 +7,12 @@
     tools:context=".CarAddActivity">
 
     <TextView
-        android:id="@+id/textView_delete"
+        android:id="@+id/textView_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="serif-monospace"
-        android:text="Удалить автомобиль?"
+        android:text="@string/textView_delete"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,10 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:backgroundTint="#F44336"
-        android:text="Удалить"
-        app:layout_constraintEnd_toEndOf="@+id/textView_delete"
+        android:text="@string/button_deleted"
+        app:layout_constraintEnd_toEndOf="@+id/textView_add"
         app:layout_constraintHorizontal_bias="0.401"
-        app:layout_constraintStart_toStartOf="@+id/textView_delete"
-        app:layout_constraintTop_toBottomOf="@+id/textView_delete" />
+        app:layout_constraintStart_toStartOf="@+id/textView_add"
+        app:layout_constraintTop_toBottomOf="@+id/textView_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

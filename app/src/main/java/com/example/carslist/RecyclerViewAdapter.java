@@ -21,6 +21,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         ConstraintLayout carRowView;
         TextView carBrand, carModel, carPrice;
+
         RecyclerViewHolder(View view) {
             super(view);
             carRowView = view.findViewById(R.id.car_row);
@@ -56,7 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.car_recycler_row,parent,false);
+                .inflate(R.layout.car_recycler_row, parent, false);
         return new RecyclerViewHolder(view);
     }
 

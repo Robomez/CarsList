@@ -8,12 +8,12 @@
 
 
     <TextView
-        android:id="@+id/textView_delete"
+        android:id="@+id/textView_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="serif-monospace"
-        android:text="Изменить данные:"
+        android:text="@string/textView_change_car"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,13 +25,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:ems="10"
-        android:hint="Марка"
+        android:hint="@string/editText_brand"
         android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView_delete" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_add" />
 
     <EditText
         android:id="@+id/editText_modify_model"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Модель"
+        android:hint="@string/editText_model"
         android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/editText_modify_brand"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Цвет"
+        android:hint="@string/editText_color"
         android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/editText_modify_model"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Цена"
+        android:hint="@string/editText_price"
         android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/editText_modify_color"
@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Сохранить изменения"
+        android:text="@string/button_modified"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Марка"
+        android:text="@string/textview_brand"
         app:layout_constraintBottom_toBottomOf="@+id/editText_modify_brand"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/editText_modify_brand" />
@@ -107,7 +107,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Цвет"
+        android:text="@string/textView_color"
         app:layout_constraintBottom_toBottomOf="@+id/editText_modify_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/editText_modify_color" />
@@ -117,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Цена, ₽"
+        android:text="@string/textView_price"
         app:layout_constraintBottom_toBottomOf="@+id/editText_modify_price"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/editText_modify_price" />
@@ -127,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Модель"
+        android:text="@string/textView_model"
         app:layout_constraintBottom_toBottomOf="@+id/editText_modify_model"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/editText_modify_model" />
@@ -138,7 +138,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Искать з/ч в каталоге"
+        android:text="@string/button_search"
         app:layout_constraintEnd_toEndOf="@+id/button_modified"
         app:layout_constraintStart_toStartOf="@+id/button_modified"
         app:layout_constraintTop_toBottomOf="@+id/button_modified" />

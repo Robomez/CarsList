@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listOrder = ORDER_UNORDERED;
 
         database = Room.databaseBuilder(
-                getApplicationContext(),
-                CarsDatabase.class,
-                "CarsDB.db")
+                        getApplicationContext(),
+                        CarsDatabase.class,
+                        "CarsDB.db")
                 .createFromAsset("CarsList.db")
                 .allowMainThreadQueries()
                 .build();
