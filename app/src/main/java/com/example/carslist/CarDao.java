@@ -17,6 +17,10 @@ public interface CarDao {
     @Query("SELECT brand FROM cars GROUP BY brand ORDER BY brand")
     List<String> getCarBrands();
 
+    // Запрос для отображения авто определённой марки по фильтру
+    @Query("SELECT * FROM cars WHERE brand = :brand")
+    List<Car> getFilteredCars(String brand);
+
     // Запрос для добавления нового автомобиля в базу
     @Query("INSERT INTO cars (brand, model, color, price) VALUES (:brand, :model, :color, :price)")
     void create(

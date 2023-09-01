@@ -83,6 +83,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
+    public void showFilteredCars(String selectedBrand) {
+        cars = MainActivity.database.carDao().getFilteredCars(selectedBrand);
+        notifyDataSetChanged();
+    }
+
     public void reload() {
         cars = MainActivity.database.carDao().getAllCars();
         notifyDataSetChanged();

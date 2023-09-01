@@ -8,6 +8,7 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -51,14 +52,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         filterSpinner.setAdapter(spinnerAdapter);
         spinnerAdapter.add("Все марки");
         spinnerAdapter.addAll(database.carDao().getCarBrands());
+        filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedSpinnerItem = filterSpinner.getSelectedItem().toString();
+                if (selectedSpinnerItem.equals("Все марки")) {
+                    adapter.reload();
+                } else {
+                    adapter.showFilteredCars(selectedSpinnerItem);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new RecyclerViewAdapter();
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-
         adapter.reload();
     }
 
