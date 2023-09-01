@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class CarAddActivity extends AppCompatActivity {
     EditText editTextBrand, editTextModel, editTextColor, editTextPrice;
@@ -16,10 +16,20 @@ public class CarAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
 
+        editTextBrand = findViewById(R.id.editText_add_brand);
+        editTextModel = findViewById(R.id.editText_add_model);
+        editTextColor = findViewById(R.id.editText_add_color);
+        editTextPrice = findViewById(R.id.editText_add_price);
+
+
         Button btnAdded = findViewById(R.id.button_added);
-        btnAdded.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnAdded.setOnClickListener(view -> {
+
+            if (editTextBrand.getText().toString().length() == 0 ||
+                    editTextModel.getText().toString().length() == 0 ||
+                    editTextPrice.getText().toString().length() == 0) {
+                Toast.makeText(this, "Нужно заполнить все поля", Toast.LENGTH_SHORT).show();
+            } else {
                 MainActivity.database.carDao().create(
                         editTextBrand.getText().toString(),
                         editTextModel.getText().toString(),
@@ -30,9 +40,6 @@ public class CarAddActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        editTextBrand = findViewById(R.id.editText_modify_brand);
-        editTextModel  = findViewById(R.id.editText_modify_model);
-        editTextColor = findViewById(R.id.editText_modify_color);
-        editTextPrice = findViewById(R.id.editText_modify_price);
     }
 }
+

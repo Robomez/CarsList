@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText_modify_brand"
+        android:id="@+id/editText_add_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_add" />
 
     <EditText
-        android:id="@+id/editText_modify_model"
+        android:id="@+id/editText_add_model"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -41,13 +41,13 @@
         android:hint="@string/editText_model"
         android:inputType="text"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText_modify_brand"
+        app:layout_constraintEnd_toEndOf="@+id/editText_add_brand"
         app:layout_constraintHorizontal_bias="0.347"
-        app:layout_constraintStart_toStartOf="@+id/editText_modify_brand"
-        app:layout_constraintTop_toBottomOf="@+id/editText_modify_brand" />
+        app:layout_constraintStart_toStartOf="@+id/editText_add_brand"
+        app:layout_constraintTop_toBottomOf="@+id/editText_add_brand" />
 
     <EditText
-        android:id="@+id/editText_modify_color"
+        android:id="@+id/editText_add_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -55,22 +55,23 @@
         android:hint="@string/editText_color"
         android:inputType="text"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText_modify_model"
-        app:layout_constraintStart_toStartOf="@+id/editText_modify_model"
-        app:layout_constraintTop_toBottomOf="@+id/editText_modify_model" />
+        app:layout_constraintEnd_toEndOf="@+id/editText_add_model"
+        app:layout_constraintStart_toStartOf="@+id/editText_add_model"
+        app:layout_constraintTop_toBottomOf="@+id/editText_add_model" />
 
     <EditText
-        android:id="@+id/editText_modify_price"
+        android:id="@+id/editText_add_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:digits="0123456789"
         android:hint="@string/editText_price"
         android:inputType="text"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText_modify_color"
-        app:layout_constraintStart_toStartOf="@+id/editText_modify_color"
-        app:layout_constraintTop_toBottomOf="@+id/editText_modify_color" />
+        app:layout_constraintEnd_toEndOf="@+id/editText_add_color"
+        app:layout_constraintStart_toStartOf="@+id/editText_add_color"
+        app:layout_constraintTop_toBottomOf="@+id/editText_add_color" />
 
     <Button
         android:id="@+id/button_added"
@@ -82,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_modify_price" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_add_price" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -97,9 +98,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/textview_brand"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_modify_brand"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_add_brand"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/editText_modify_brand" />
+        app:layout_constraintTop_toTopOf="@+id/editText_add_brand" />
 
     <TextView
         android:id="@+id/textView3"
@@ -107,9 +108,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/textView_model"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_modify_color"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_add_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/editText_modify_color" />
+        app:layout_constraintTop_toTopOf="@+id/editText_add_color" />
 
     <TextView
         android:id="@+id/textView4"
@@ -117,9 +118,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/textView_price"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_modify_price"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_add_price"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/editText_modify_price" />
+        app:layout_constraintTop_toTopOf="@+id/editText_add_price" />
 
     <TextView
         android:id="@+id/textView2"
@@ -127,9 +128,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/textView_model"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_modify_model"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_add_model"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/editText_modify_model" />
+        app:layout_constraintTop_toTopOf="@+id/editText_add_model" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

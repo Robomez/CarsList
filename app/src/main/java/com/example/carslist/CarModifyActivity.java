@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class CarModifyActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,16 +53,24 @@ public class CarModifyActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v.equals(btnModified)) {
-            // change values for that car
-            MainActivity.database.carDao().modify(
+            if (editTextBrand.getText().toString().length() == 0 ||
+                    editTextModel.getText().toString().length() == 0 ||
+                    editTextPrice.getText().toString().length() == 0) {
+                Toast
+                    .makeText(this, "Нужно заполнить все поля", Toast.LENGTH_SHORT)
+                    .show();
+            } else {
+                // change values for that car
+                MainActivity.database.carDao().modify(
                     editTextBrand.getText().toString(),
                     editTextModel.getText().toString(),
                     editTextColor.getText().toString(),
                     Integer.parseInt(editTextPrice.getText().toString()),
                     id
-            );
-            Intent intent = new Intent(CarModifyActivity.this, MainActivity.class);
-            startActivity(intent);
+                );
+                Intent intent = new Intent(CarModifyActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
         } else if (v.equals(btnSearch)) {
 
             if (ContextCompat.checkSelfPermission(
