@@ -8,8 +8,12 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,14 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerViewAdapter adapter;
 
     static String ORDER_ASC = "1", ORDER_DESC = "2", ORDER_UNORDERED = "0";
-    private String order;
+    private String listOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        order = ORDER_UNORDERED;
+        listOrder = ORDER_UNORDERED;
 
         database = Room.databaseBuilder(
                 getApplicationContext(),
@@ -40,7 +44,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSortPrice.setOnClickListener(this);
         btnAddCar = findViewById(R.id.button_add_car);
         btnAddCar.setOnClickListener(this);
+
         filterSpinner = findViewById(R.id.filter_spinner);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new ArrayList<>());
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterSpinner.setAdapter(spinnerAdapter);
+        spinnerAdapter.add("Все марки");
+        spinnerAdapter.addAll(database.carDao().getCarBrands());
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -71,12 +81,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void sortPrice() {
-        adapter.sortByPrice(order);
-        if (order == ORDER_ASC) {
-            order = ORDER_DESC;
+        adapter.sortByPrice(listOrder);
+        if (Objects.equals(listOrder, ORDER_ASC)) {
+            listOrder = ORDER_DESC;
             btnSortPrice.setText("Сорт по цене ⇑");
         } else {
-            order = ORDER_ASC;
+            listOrder = ORDER_ASC;
             btnSortPrice.setText("Сорт по цене ⇓");
         }
     }

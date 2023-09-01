@@ -13,6 +13,10 @@ public interface CarDao {
     @Query("SELECT * FROM cars")
     List<Car> getAllCars();
 
+    // Запрос для отображения марок авто
+    @Query("SELECT brand FROM cars GROUP BY brand ORDER BY brand")
+    List<String> getCarBrands();
+
     // Запрос для добавления нового автомобиля в базу
     @Query("INSERT INTO cars (brand, model, color, price) VALUES (:brand, :model, :color, :price)")
     void create(
