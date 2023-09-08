@@ -37,6 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("model", current.model);
                 intent.putExtra("color", current.color);
                 intent.putExtra("price", current.price);
+                intent.putExtra("qrcode", current.qrcode);
                 view1.getContext().startActivity(intent);
             });
 

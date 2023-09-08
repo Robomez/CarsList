@@ -18,4 +18,6 @@ public class Car {
     public String color;
     @ColumnInfo(name = "price")
     @NonNull public int price;
+    @ColumnInfo(name = "qrcode")
+    public String qrcode;
 }
