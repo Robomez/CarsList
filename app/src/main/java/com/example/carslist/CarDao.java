@@ -34,6 +34,14 @@ public interface CarDao {
     @Query("UPDATE cars SET brand = :brand, model = :model, color = :color, price = :price WHERE id = :id")
     void modify(String brand, String model, String color, int price, int id);
 
+    // Запрос для сохранения qr кода автомобиля
+    @Query("UPDATE cars SET qrcode = :qrcode WHERE id = :id")
+    void setQrcode(String qrcode, int id);
+
+    // Запрос для получения qr кода автомобиля, чтобы быстро обновить UI без обновления всей активити.
+    @Query("SELECT qrcode FROM cars WHERE id = :id")
+    String getQrcode(int id);
+
     // Запрос для удаления автомобиля
     @Query("DELETE FROM cars WHERE id = :id")
     void delete(int id);

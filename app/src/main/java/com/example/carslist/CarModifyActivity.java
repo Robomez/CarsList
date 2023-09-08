@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.mlkit.common.MlKitException;
+import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner;
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions;
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning;
@@ -50,7 +51,14 @@ public class CarModifyActivity extends AppCompatActivity implements View.OnClick
         editTextPrice.setText(modifyPrice);
 
         id = getIntent().getIntExtra("id", 0);
+
         textViewQrcode = findViewById(R.id.textView_qrcode);
+        String modifyQrcode = getIntent().getStringExtra("qrcode");
+        if (modifyQrcode == null) {
+            textViewQrcode.setText("Qr код будет тут");
+        } else {
+            textViewQrcode.setText(modifyQrcode);
+        }
 
         btnModified = findViewById(R.id.button_modified);
         btnModified.setOnClickListener(this);
@@ -94,7 +102,6 @@ public class CarModifyActivity extends AppCompatActivity implements View.OnClick
                         new String[]{"android.permission.INTERNET"},
                         200);
             }
-
             String url = "https://www.google.com/search?q=каталог+запчастей+"+editTextBrand.getText().toString();
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
@@ -112,11 +119,20 @@ public class CarModifyActivity extends AppCompatActivity implements View.OnClick
                 GmsBarcodeScanning.getClient(this, optionsBuilder.build());
         gmsBarcodeScanner
                 .startScan()
-                .addOnSuccessListener(barcode -> textViewQrcode.setText(barcode.getDisplayValue()))
+                .addOnSuccessListener(this::updateQRcode)
                 .addOnFailureListener(
                         e -> textViewQrcode.setText(getErrorMessage(e)))
                 .addOnCanceledListener(
                         () -> textViewQrcode.setText(getString(R.string.error_scanner_cancelled)));
+    }
+
+    private void updateQRcode(Barcode barcode) {
+        MainActivity.database.carDao().setQrcode(
+                barcode.getDisplayValue(),
+                id
+        );
+        String i = MainActivity.database.carDao().getQrcode(id);
+        textViewQrcode.setText(i);
     }
 
     @SuppressLint("SwitchIntDef")
