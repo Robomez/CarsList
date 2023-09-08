@@ -23,7 +23,7 @@
         android:id="@+id/editText_modify_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/editText_brand"
         android:inputType="text"
@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView_modify" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_qrcode" />
 
     <EditText
         android:id="@+id/editText_modify_model"
@@ -143,5 +143,24 @@
         app:layout_constraintEnd_toEndOf="@+id/button_modified"
         app:layout_constraintStart_toStartOf="@+id/button_modified"
         app:layout_constraintTop_toBottomOf="@+id/button_modified" />
+
+    <TextView
+        android:id="@+id/textView_qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView_modify"
+        app:layout_constraintStart_toStartOf="@+id/textView_modify"
+        app:layout_constraintTop_toBottomOf="@+id/textView_modify" />
+
+    <Button
+        android:id="@+id/button_qrcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/button_qrcode"
+        app:layout_constraintEnd_toEndOf="@+id/button_search"
+        app:layout_constraintStart_toStartOf="@+id/button_search"
+        app:layout_constraintTop_toBottomOf="@+id/button_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

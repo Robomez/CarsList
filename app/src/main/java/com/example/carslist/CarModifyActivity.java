@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -12,12 +13,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.mlkit.common.MlKitException;
+import com.google.mlkit.vision.codescanner.GmsBarcodeScanner;
+import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions;
+import com.google.mlkit.vision.codescanner.GmsBarcodeScanning;
 
 public class CarModifyActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextBrand, editTextModel, editTextColor, editTextPrice;
-    private Button btnModified, btnSearch;
+    private TextView textViewQrcode;
+    private Button btnModified, btnSearch, btnQrcode;
     private int id;
 
     @Override
@@ -42,12 +50,16 @@ public class CarModifyActivity extends AppCompatActivity implements View.OnClick
         editTextPrice.setText(modifyPrice);
 
         id = getIntent().getIntExtra("id", 0);
+        textViewQrcode = findViewById(R.id.textView_qrcode);
 
         btnModified = findViewById(R.id.button_modified);
         btnModified.setOnClickListener(this);
 
         btnSearch = findViewById(R.id.button_search);
         btnSearch.setOnClickListener(this);
+
+        btnQrcode = findViewById(R.id.button_qrcode);
+        btnQrcode.setOnClickListener(this);
     }
 
     @Override
@@ -87,6 +99,39 @@ public class CarModifyActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             startActivity(intent);
+        } else if (v.equals(btnQrcode)) {
+            onScanButtonClicked();
+        }
+    }
+
+    // Стандартная библиотека ML kit от google позволяет выполнять сканирование кодов
+    // без явного вызова камеры с помощью GmsBarcodeScanner
+    public void onScanButtonClicked() {
+        GmsBarcodeScannerOptions.Builder optionsBuilder = new GmsBarcodeScannerOptions.Builder();
+        GmsBarcodeScanner gmsBarcodeScanner =
+                GmsBarcodeScanning.getClient(this, optionsBuilder.build());
+        gmsBarcodeScanner
+                .startScan()
+                .addOnSuccessListener(barcode -> textViewQrcode.setText(barcode.getDisplayValue()))
+                .addOnFailureListener(
+                        e -> textViewQrcode.setText(getErrorMessage(e)))
+                .addOnCanceledListener(
+                        () -> textViewQrcode.setText(getString(R.string.error_scanner_cancelled)));
+    }
+
+    @SuppressLint("SwitchIntDef")
+    private String getErrorMessage(Exception e) {
+        if (e instanceof MlKitException) {
+            switch (((MlKitException) e).getErrorCode()) {
+                case MlKitException.CODE_SCANNER_CAMERA_PERMISSION_NOT_GRANTED:
+                    return getString(R.string.error_camera_permission_not_granted);
+                case MlKitException.CODE_SCANNER_APP_NAME_UNAVAILABLE:
+                    return getString(R.string.error_app_name_unavailable);
+                default:
+                    return getString(R.string.error_default_message, e);
+            }
+        } else {
+            return e.getMessage();
         }
     }
 }
