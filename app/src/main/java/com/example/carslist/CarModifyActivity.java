@@ -137,16 +137,20 @@ public class CarModifyActivity extends AppCompatActivity implements View.OnClick
     // Стандартная библиотека ML kit от google позволяет выполнять сканирование кодов
     // без явного вызова камеры с помощью GmsBarcodeScanner
     public void onScanButtonClicked() {
-        GmsBarcodeScannerOptions.Builder optionsBuilder = new GmsBarcodeScannerOptions.Builder();
+        // GmsBarcodeScannerOptions.Builder optionsBuilder = new GmsBarcodeScannerOptions.Builder();
+        GmsBarcodeScannerOptions options = new GmsBarcodeScannerOptions.Builder()
+                .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
+                .build();
+
         GmsBarcodeScanner gmsBarcodeScanner =
-                GmsBarcodeScanning.getClient(this, optionsBuilder.build());
+                GmsBarcodeScanning.getClient(this, options);
         gmsBarcodeScanner
                 .startScan()
                 .addOnSuccessListener(this::updateQRcode)
                 .addOnFailureListener(
-                        e -> textViewQrcode.setText(getErrorMessage(e)))
+                    e -> textViewQrcode.setText(getErrorMessage(e)))
                 .addOnCanceledListener(
-                        () -> textViewQrcode.setText(getString(R.string.error_scanner_cancelled)));
+                    () -> textViewQrcode.setText(getString(R.string.error_scanner_cancelled)));
     }
 
     private void updateQRcode(Barcode barcode) {
