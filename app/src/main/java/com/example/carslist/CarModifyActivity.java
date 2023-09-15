@@ -16,6 +16,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.OptionalModuleApi;
+import com.google.android.gms.common.moduleinstall.ModuleInstall;
+import com.google.android.gms.common.moduleinstall.ModuleInstallClient;
+import com.google.android.gms.common.moduleinstall.ModuleInstallRequest;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.mlkit.common.MlKitException;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanner;
@@ -68,6 +74,23 @@ public class CarModifyActivity extends AppCompatActivity implements View.OnClick
 
         btnQrcode = findViewById(R.id.button_qrcode);
         btnQrcode.setOnClickListener(this);
+
+        // Проверить, поставлен ли модуль BarcodeScanner
+        ModuleInstallClient moduleInstallClient = ModuleInstall.getClient(this);
+        OptionalModuleApi gmsBarcodeScanningApi = GmsBarcodeScanning.getClient(this);
+        ModuleInstallRequest moduleInstallRequest =
+                ModuleInstallRequest.newBuilder()
+                        .addApi(gmsBarcodeScanningApi)
+                        .build();
+        moduleInstallClient
+            .installModules(moduleInstallRequest)
+            .addOnFailureListener(
+                e -> Snackbar
+                        .make(findViewById(R.id.textView_qrcode),
+                                "Barcode module install not OK",
+                                BaseTransientBottomBar.LENGTH_SHORT)
+                        .show()
+            );
     }
 
     @Override

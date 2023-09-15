@@ -62,11 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     adapter.showFilteredCars(selectedSpinnerItem);
                 }
             }
-
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
